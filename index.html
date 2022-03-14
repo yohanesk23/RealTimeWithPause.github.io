@@ -1,1 +1,322 @@
-Hello World
+<!--
+ API Documentation HTML Template  - 1.0.1
+ Copyright © 2016 Florian Nicolas
+ Licensed under the MIT license.
+ https://github.com/ticlekiwi/API-Documentation-HTML-Template
+ !-->
+
+ <!DOCTYPE html>
+ <html class="no-js" lang="en">
+ 
+ <head>
+     <meta charset="utf-8">
+     <title>API - Documentation</title>
+     <meta name="description" content="">
+     <meta name="author" content="ticlekiwi">
+ 
+     <meta http-equiv="cleartype" content="on">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+     <link rel="stylesheet" href="css/hightlightjs-dark.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet"> 
+     <link rel="stylesheet" href="css/style.css" media="all">
+     <script>
+         hljs.initHighlightingOnLoad();
+     </script>
+ </head>
+ 
+ <body class="one-content-column-version">
+ <div class="left-menu">
+     <div class="content-logo">
+         <div class="logo">
+             <!-- <img alt="platform by Emily van den Heever from the Noun Project" title="platform by Emily van den Heever from the Noun Project" src="images/logo.png" height="32" /> -->
+             <span>Real Time Pause API Documentation</span>
+         </div>
+         <button class="burger-menu-icon" id="button-menu-mobile">
+             <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+         </button>
+     </div>
+     <div class="mobile-menu-closer"></div>
+     <div class="content-menu">
+         <div class="content-infos">
+             <div class="info"><b>Using API Documentation Template made by <a href= "https://github.com/ticlekiwi/API-Documentation-HTML-Template">ticlekiwi </a> </div>
+            
+             <!-- <div class="info"><b>Last Updated:</b> 15th Sep, 2021</div> -->
+         </div>
+         <ul>
+             <li class="scroll-to-link active" data-target="Description">
+                 <a>Description</a>
+             </li>
+             <li class="scroll-to-link" data-target="Important-Methods">
+                 <a>Important Methods</a>
+             </li>
+             <li class="scroll-to-link" data-target="Different-Inputs">
+                <a>Different Inputs </a>
+            </li>
+             <li class="scroll-to-link" data-target="Tutorial">
+                 <a>Tutorial </a>
+             </li>
+             <li class="scroll-to-link active" data-target="Demo">
+                <a>Demo</a>
+            </li>
+         </ul>
+     </div>
+ </div>
+ 
+ 
+ <div class="content-page">
+     <div class="content">
+         <div class="overflow-hidden content-section" id="Description">
+             <h1>Description</h1>
+             <p>
+                 The Real Time Pause (RTP) API is an api designed to handle the back end processing for RTP Game Objects and the different kind of states 
+                 programmers might want to use with them. Programmers are given the freedom to design their RTP Game Objects to do anything within the bounds 
+                 of RTP States. These states act like an update() function with their own init() function, and are meant to be called replacing a Game Object's
+                 normal update() function. When initializing an RTP Game Object you insert multiple RTP States and assign each state an id on how to use. In most 
+                 scenarios there will be a standard update RTP State to be played when the RTP Game Object is not frozen, and a frozen RTP State to be played when
+                 the RTP Game Object is Frozen.
+             </p>
+             <p>
+                 Each RTP Game Object States are meant to be used with multiple states with each state acting very modular. There will be states that only will be queued into
+                 action if a certain key is pressed and there will be states that are only queued only if a certain command is passed in from the standard my_game.js update() function. These
+                 differences will be identifiable through the use of "id"s that you feed into the constructor when first feeding a state into a RTP Game Object.
+                 Should be noted tha these states being queued are action queue based, meaning they get queued, then get played out when the RTP Game Object is no longer in a freeze state.
+                 Programmers are free to call each RTP Game Object's freeze state however they feel like in the my_game.js update() function.
+             </p>
+         </div>
+
+         <div class="overflow-hidden content-section" id="Important-Methods">
+             <h2>Important Methods</h2>
+             <p> </p>
+             <br>
+             
+            <h4>RTP Game Object</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Functions</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>update()</td>
+                            <td>Called by my_game.js, handles a majority of the logic (freeze, saving input, etc..)</td>
+                        </tr>
+                        <tr>
+                            <td>leftFreeze()</td>
+                            <td>Called when exiting freeze state, calls read function</td>
+                        </tr>
+                        <tr>
+                            <td>readInfo()</td>
+                            <td>
+                                Reads the input of what was pressed during the freeze state and start 
+                                running that state, if input is empty, just go back to regular update state
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>pop()</td>
+                            <td>Finish the command first in queue, then delete it and go back to read function</td>
+                        </tr>
+                        <tr>
+                            <td>processKeyClicked()</td>
+                            <td>Tells the object to start keep track of keyClicked input when in freeze state</td>
+                        </tr>
+                        <tr>
+                            <td>processKeyPressed()</td>
+                            <td>Tells the object to start keep track of keyPressed input when in freeze state</td>
+                        </tr>
+                        <tr>
+                            <td>saveKeyClicked()</td>
+                            <td>Method that saves the KeyClicked information</td>
+                        </tr>
+                        <tr>
+                            <td>saveKeyPressed()</td>
+                            <td>Method that saves the KeyPressed information</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>getKeysClickedInfo()</td>
+                            <td>Returns the array of information regard the input received</td>
+                        </tr>
+                        <tr>
+                            <td>isFrozen()</td>
+                            <td>returns true if RTP Game Object is in Frozen state</td>
+                        </tr>
+                        <tr>
+                            <td>update()</td>
+                            <td>method that is ran from mygame.js update() and handles a majority of the back end processing. Routes program 
+                                to handle input, and run different states.
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+            <p>
+                *this.states is the array of states that are loaded in to use with this RTP Game Object. 0 will always be update state, 1 will always be freeze state, other states will be identified with “ids”
+            </p>
+            <br/>
+
+            <h4>RTP Game Object States</h4>
+            <ul>
+                <li> Made to be loaded into the RTPGameObject.js </li>
+                <li> Has little necessary code: This is to encourage flexibility </li>
+                <li> This class’ update and init are what will be running in place of a traditional update() function that game objects tend to have </li>
+            </ul>
+            
+
+             <table>
+                 <thead>
+                    <tr>
+                        <th>Methods</th>
+                        <th>Description</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                    <tr>
+                        <td>update()</td>
+                        <td>What will be running when update is called in mygame.js</td>
+                    </tr>
+                    <tr>
+                        <td>init()</td>
+                        <td>Called once before update is repeatedly called</td>
+                    </tr>
+                    <tr>
+                        <td>pop()</td>
+                        <td>Signals to RTPGameObject.js that this state is finished, and needs to be removed</td>
+                    </tr>
+                    <tr>
+                        <td>getID()</td>
+                        <td>Returns the id of this state</td>
+                    </tr>
+                 </tbody>
+             </table>
+             <p>
+                *The field for “this.id”  is very important and is initialized when being first fed into the RTP Game Object. It’s how the RTPGameObject.js 
+                will recognize which input signal to which state 
+             </p>
+         </div>
+
+         <div class="overflow-hidden content-section" id="Different-Inputs">
+            <h2>Different Inputs</h2>
+            <p>
+               This API is capable of handling 3 different kinds of input: Key Pressed, Key Clicked, and Commands. Each of these inputs are only able to be processed when the 
+               RTP Game Object they are refering to is in it's freeze state. In addition to this Key Pressed and Key Clicked must first tell the RTP 
+               Game Object that it will be processing these types of information with a process() method. This is due to these types of input possibly taking unnescary memory 
+               usage, so are only used when wanted by the developer.
+            </p>
+            <p>
+                RTP Game Object States are each fed an id of which to associate its state to whatever input. Key Clicked are keyboard inputs and are recognized as lowercase letters/numbers
+                /symbols ex: "a" or "5". Key Pressed are also keyboard inputs and are recognized as the same as Key Pressed, but with an additional exclamation mark ex: "!a" or "!5".
+            </p>
+            <p>
+                RTP Game Object States recognize commands with actual words, for example: "hero_attack". Commands are proccesed from the mygame.js update() function and are inserted into the 
+                action queue when the user calls the insertCommand() function extending from the RTP Game Object. This allows developers to issue commands not only from additional input, but also
+                mouse clicks, button clicks, and more.
+            </p>
+
+            
+
+        </div>
+
+         <div class="overflow-hidden content-section" id="Tutorial">
+             <h2>Tutorial</h2>
+         </div>
+         <p>
+            Create a new RTP Game Object by extending from the RTPGameObject.js file in the RTP API Folder. You would create this as you would with any other game object you would
+            normally create. 
+        </p>
+        <img src="images/1.JPG" width="50%" style="position:relative; left:50px">
+
+         <p>
+            Create two RTP Game Object States by extending from the RTPGameObjectStates.js file in the RTP API Folder. These two inital states will be known as the update state and the 
+            frozen state.
+         </p>
+         <img src="images/2.JPG" width="50%"  style="position:relative; left:50px">
+
+         <p>
+            Insert these two states into the RTP Game Object, with the update state inserted first, then the frozen state inserted second
+        </p>
+        <img src="images/3.JPG" alt="" width="50%" style="position:relative; left:50px">
+         
+        <p> 
+            Create any number of additional states with their ids refering to a certain input. In this example I will only be using states that are recognized with commands
+        </p>
+        <img src="images/4.JPG" alt="" width="50%" style="position:relative; left:50px">
+         
+        <p>
+            Now that your RTP Game Object is finished and has all of the desired states loaded into it, go to mygame.js (where your scene is) and initialize the RTP Game Object. 
+        </p>
+        <img src="images/5.JPG" alt="" width="50%" style="position:relative; left:50px">
+
+
+         <p>
+            Indicate what type of information you are going to be processing, (I'm processing commands, so I don't need to indicate, but if you are processing KeyClicked or Key Pressed
+            you need to indicate that like this) 
+        </p>
+        <img src="images/6.JPG" alt="" width="50%" style="position:relative; left:50px">
+
+
+        <p> 
+            Do the same thing you would with any other game object, draw(), init(), update() etc.
+        </p>
+        <img src="images/7.JPG" alt="" width="50%" style="position:relative; left:50px">
+
+        <p>
+            In the update() function of mygame.js, create a way to enter the freeze state of that RTP Game Object, in this case I made it by pressing P 
+        </p>
+        <img src="images/8.JPG" alt="" width="50%" style="position:relative; left:50px">
+
+        <p>
+            If you are processing key clicked and key pressed, your done, the RTP Game Object will automatically process these kinds of input, if you are processing commands like I am
+            in this example, you need to deliberately insert those commands in the mygame.js update() like this. I decided to make it a mouse click 
+        </p>
+        <img src="images/9.JPG" alt="" width="50%" style="position:relative; left:50px">
+            
+         <div class="overflow-hidden content-section" id="Demo">
+            <h2> <a href = "https://elyghthao.github.io/CSS452-Final-Project-API-Creation/">Demo</a> </h2>
+            <p> </p>
+        </div>
+     </div>
+ </div>
+ <!-- Github Corner Ribbon - to remove (Ribbon created with : http://tholman.com/github-corners/ )-->
+ <a href="https://github.com/ticlekiwi/API-Documentation-HTML-Template" class="github-corner" aria-label="View source on Github" title="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index:99999; fill:#70B7FD; color:#fff; position: fixed; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+ <style>
+     .github-corner:hover .octo-arm {
+         animation: octocat-wave 560ms ease-in-out
+     }
+ 
+     @keyframes octocat-wave {
+         0%,
+         100% {
+             transform: rotate(0)
+         }
+         20%,
+         60% {
+             transform: rotate(-25deg)
+         }
+         40%,
+         80% {
+             transform: rotate(10deg)
+         }
+     }
+ 
+     @media (max-width:500px) {
+         .github-corner:hover .octo-arm {
+             animation: none
+         }
+         .github-corner .octo-arm {
+             animation: octocat-wave 560ms ease-in-out
+         }
+     }
+     @media only screen and (max-width:680px){ .github-corner > svg { right: auto!important; left: 0!important; transform: rotate(270deg)!important;}}
+ </style>
+ <!-- END Github Corner Ribbon - to remove -->
+ <script src="js/script.js"></script>
+ </body>
+ 
+ </html>
